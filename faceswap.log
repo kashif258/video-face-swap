@@ -1,0 +1,38 @@
+12/25/2025 11:45:42 MainProcess     MainThread                     logger          log_setup                      INFO     Log level set to: INFO
+12/25/2025 11:45:49 MainProcess     MainThread                     plugin_loader   _import                        INFO     Loading Detect from External plugin...
+12/25/2025 11:46:01 MainProcess     MainThread                     plugin_loader   _import                        INFO     Loading Align from External plugin...
+12/25/2025 11:46:23 MainProcess     MainThread                     launcher        execute_script                 ERROR    Got Exception on main handler:
+Traceback (most recent call last):
+  File "C:\Users\kashif\faceswap\lib\cli\launcher.py", line 191, in execute_script
+    process = script(arguments)
+  File "C:\Users\kashif\faceswap\scripts\extract.py", line 63, in __init__
+    self._extractor = Extractor(self._args.detector,
+                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+                                self._args.aligner,
+                                ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+                                re_feed=self._args.re_feed,
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                re_align=self._args.re_align)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kashif\faceswap\plugins\extract\pipeline.py", line 118, in __init__
+    self._align = self._load_align(aligner,
+                  ~~~~~~~~~~~~~~~~^^^^^^^^^
+                                   configfile,
+                                   ^^^^^^^^^^^
+    ...<2 lines>...
+                                   re_align,
+                                   ^^^^^^^^^
+                                   disable_filter)
+                                   ^^^^^^^^^^^^^^^
+  File "C:\Users\kashif\faceswap\plugins\extract\pipeline.py", line 672, in _load_align
+    plugin = PluginLoader.get_aligner(aligner_name)(configfile=configfile,
+                                                    normalize_method=normalize_method,
+    ...<2 lines>...
+                                                    disable_filter=disable_filter,
+                                                    instance=self._instance)
+  File "C:\Users\kashif\faceswap\plugins\extract\align\external.py", line 55, in __init__
+    self._adjustment: float = 1. if centering == "none" else 1. - EXTRACT_RATIOS[centering]
+                                                                  ~~~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: unhashable type: 'ConfigItem'
+12/25/2025 11:46:23 MainProcess     MainThread                     launcher        execute_script                 CRITICAL An unexpected crash has occurred. Crash report written to 'C:\Users\kashif\faceswap\crash_report.2025.12.25.114601486510.log'. You MUST provide this file if seeking assistance. Please verify you are running the latest version of faceswap before reporting
